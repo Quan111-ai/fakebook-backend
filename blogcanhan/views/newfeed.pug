@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Newfeed - Blog
+    link(rel="stylesheet" href="/public/styles.css")
+  body
+    header
+      nav.navbar
+        div.logo Blog
+        div.search-bar
+          input(type="text" placeholder="Tìm kiếm...")
+        div.actions
+          a(href="/post/new") Đăng bài
+          a(href="/profile") Hồ sơ
+    
+    main.container
+      each post in posts
+        article.post
+          div.post-header
+            img.avatar(src=post.author.avatar alt="Avatar")
+            div
+              h3= post.author.name
+              span= post.createdAt
+          div.post-content
+            if post.image
+              img.post-img(src=post.image alt="Hình ảnh bài viết")
+            p= post.content
+          div.post-actions
+            button.like Thích
+            button.comment Bình luận
+    
+    script(src="/public/script.js")

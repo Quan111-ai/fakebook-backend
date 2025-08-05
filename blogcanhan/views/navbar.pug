@@ -1,0 +1,19 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container
+    a.navbar-brand(href="/") Blog Cá Nhân
+    button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNav
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link(href="/") Trang chủ
+        if user
+          li.nav-item
+            a.nav-link(href="/new-post") Thêm bài viết
+          li.nav-item
+            a.nav-link(href="/logout") Đăng xuất
+        else
+          li.nav-item
+            a.nav-link(href="/login") Đăng nhập
+          li.nav-item
+            a.nav-link(href="/register") Đăng ký

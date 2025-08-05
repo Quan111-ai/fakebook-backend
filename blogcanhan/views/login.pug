@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-4
+        .card.shadow-lg
+          .card-body
+            h2.text-center.mb-4 Đăng Nhập
+            if error
+              .alert.alert-danger #{error}
+            form(method="POST" action="/login")
+              .mb-3
+                label.form-label(for="email") Email
+                input.form-control(type="email" name="email" required)
+              .mb-3
+                label.form-label(for="password") Mật khẩu
+                input.form-control(type="password" name="password" required)
+              button.btn.btn-primary.w-100(type="submit") Đăng Nhập
+            p.text-center.mt-3
+              | Chưa có tài khoản? 
+              a(href="/register") Đăng ký ngay

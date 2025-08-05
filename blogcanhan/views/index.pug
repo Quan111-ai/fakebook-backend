@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container
+    .text-center.my-4
+      img(src='/images/logocaloc.png' alt='Logo' width='150' height='150' class='mb-3 d-block mx-auto')
+      h1 Cá Lóc!
+    .row
+      each post in posts
+        .col-lg-4.col-md-6.col-sm-12.mb-4
+          .card.shadow-sm
+            if post.image
+              img.card-img-top(src=post.image alt=post.title)
+            .card-body
+              h5.card-title
+                a(href=`/posts/${post._id}`) #{post.title}
+              p.card-text #{post.content ? post.content.substring(0, 100) : 'Nội dung không có'}...
+              small.text-muted Tác giả: #{post.author || 'Không rõ'}
+              
+              // Kiểm tra nếu người dùng đăng nhập và là tác giả bài viết thì hiển thị nút xóa
+              if user && user.email === post.author
+                form(method="POST" action=`/api/posts/${post._id}?_method=DELETE` style="display:inline;")
+                  button.btn.btn-danger.btn-sm.mt-2(type="submit" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')") Xóa bài viết

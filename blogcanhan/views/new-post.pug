@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+    .text-center.my-4
+      h2 Tạo bài viết mới
+    form(method="POST" action="/api/posts")
+      .mb-3
+        label.form-label(for="title") Tiêu đề
+        input.form-control(type="text" id="title" name="title" required)
+      .mb-3
+        label.form-label(for="content") Nội dung
+        textarea.form-control(id="content" name="content" rows="5" required)
+      .mb-3
+        label.form-label(for="image") Ảnh (URL)
+        input.form-control(type="text" id="image" name="image")
+      button.btn.btn-primary(type="submit") Đăng bài

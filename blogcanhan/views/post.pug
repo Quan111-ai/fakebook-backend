@@ -1,0 +1,29 @@
+extends layout
+block content
+  .container
+    .post-card
+      h1.text-primary= post.title
+      if post.image
+        img.img-fluid.mt-3(src=post.image alt=post.title)
+      p.text-muted #{post.content}
+      small.text-secondary Tác giả: #{post.author}
+      a.btn.btn-secondary.mt-3(href='/') ← Quay lại trang chủ
+
+    // Phần bình luận
+    .comments.mt-5
+      h3 Bình luận
+      ul#commentList
+        each comment in comments
+          li.border-bottom.p-2
+            strong #{comment.userId.email}:
+            |  #{comment.content}
+            small.text-muted (#{comment.createdAt.toLocaleDateString()})
+
+    // Form nhập bình luận
+    if user
+      form#commentForm(method='POST')
+        input(type='hidden' name='postId' value=post._id)
+        textarea.form-control(name='content' placeholder='Viết bình luận...' required)
+        button.btn.btn-primary.mt-2(type='submit') Gửi bình luận
+    else
+      p.text-muted Bạn cần đăng nhập để bình luận.
